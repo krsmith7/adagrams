@@ -30,4 +30,16 @@ end
 puts "#{draw_letters}"
 
 alphabet = Array.new(4, "A")
+
+
 puts "#{alphabet}"
+
+puts alphabet
+
+tulny = ("A".."Z").to_a
+
+puts "#{tulny}"
+# => ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+
+
+# Next? Create map method to change array based on values in table. 
