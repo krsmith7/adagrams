@@ -1,45 +1,30 @@
 #create data structure
-# def add_letters (letter, qty)
-#   letter_pool = []
-#   qty.times do |letter|
-#     letter_pool << "#{letter}"
-#   end
-#   return letter_pool
-# end
-#
-# letter_pool = add_letters("A", 9)
-# puts "#{letter_pool}"
+all_letters = []
 
-# all_letters = [
-# "A", "A", "A", "A", "A", "B", "B", "C", "C", "D", "E"
-# ]
+letters = {"A" => 9, "B" => 2, "C" => 2, "D"=> 4, "E" => 12, "F"=> 2, "G"=>3, "H"=>2, "I" => 9, "J"=>1, "K"=> 1, "L"=>4, "M"=> 2, "N"=> 6, "O"=>8, "P" => 2, "Q" => 1, "R"=>6, "S"=>4, "T"=>6, "U"=>4, "V"=>2, "W"=>2, "X"=>1, "Y"=>2, "Z"=>1}
+
+# Fill pool of letters array with letters
+letters.each do |letter, freq|
+  count = 0
+  until count == freq
+    all_letters << letter
+    count += 1
+  end
+end
+
+puts "#{all_letters}"
 
 # Define method for creating user hand
-def draw_letters
-  all_letters =
-  # [ "A", "A", "A", "A", "A", "A", "A" A A "B", "B", "C", "C", "D", "E"]
-  %w(A A A A A A A A A B B C C D D D D E E E E E E E
-     E E E E E F F G G G H H I I I I I I I I I J K L L L L M M N N N N N N O O O O O O O O P P Q R R R R R R S S S S T T T T T T U U U U V V W W X Y Y Z)
+def draw_letters(array)
   user_letters = []
-
-  user_letters = all_letters.sample(10)
-
+  user_letters = array.sample(10)
   return user_letters
 end
 
-puts "#{draw_letters}"
 
-alphabet = Array.new(4, "A")
+# puts "#{draw_letters(all_letters)}"
+drawn_letters = draw_letters(all_letters)
+print "drawn letters :"
+puts "#{drawn_letters}"
 
-
-puts "#{alphabet}"
-
-puts alphabet
-
-tulny = ("A".."Z").to_a
-
-puts "#{tulny}"
-# => ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
-
-
-# Next? Create map method to change array based on values in table. 
+puts drawn_letters.size
