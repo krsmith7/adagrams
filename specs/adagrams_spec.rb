@@ -29,25 +29,25 @@ describe 'Adagrams' do
     end
   end
 
-#   describe 'uses_available_letters? method' do
+  describe 'uses_available_letters? method' do
+
+    it 'returns true if the submitted letters are valid against the drawn letters' do
+      drawn_letters = ['D', 'O', 'G', 'X', 'X', 'X', 'X', 'X', 'X', 'X']
+      test_word = 'DOG'
+
+      is_valid = uses_available_letters? test_word, drawn_letters
+
+      expect(is_valid).must_equal true
+    end
 #
-#     it 'returns true if the submitted letters are valid against the drawn letters' do
-#       drawn_letters = ['D', 'O', 'G', 'X', 'X', 'X', 'X', 'X', 'X', 'X']
-#       test_word = 'DOG'
-#
-#       is_valid = uses_available_letters? test_word, drawn_letters
-#
-#       expect(is_valid).must_equal true
-#     end
-#
-#     it 'returns false word contains letters not in the drawn letters' do
-#       drawn_letters = ['D', 'O', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X']
-#       test_word = 'DOG'
-#
-#       is_valid = uses_available_letters? test_word, drawn_letters
-#
-#       expect(is_valid).must_equal false
-#     end
+    it 'returns false word contains letters not in the drawn letters' do
+      drawn_letters = ['D', 'O', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X']
+      test_word = 'DOG'
+
+      is_valid = uses_available_letters? test_word, drawn_letters
+
+      expect(is_valid).must_equal false
+    end
 #
 #     it 'returns false word contains repeated letters more than in the drawn letters' do
 #       drawn_letters = ['A', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X']
@@ -171,4 +171,6 @@ describe 'Adagrams' do
 #       expect(best_word[:score]).must_equal 18
 #     end
 #   end
+# end
+end
 end
