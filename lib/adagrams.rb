@@ -1,3 +1,5 @@
+require 'pry'
+
 #create data structure
 all_letters = []
 
@@ -12,69 +14,48 @@ letters.each do |letter, freq|
   end
 end
 
-# puts "#{all_letters}"
 
 # Define method for creating user hand
 def draw_letters(array)
-  user_letters = []
   user_letters = array.sample(10)
   return user_letters
 end
 
+DRAWN_LETTERS = draw_letters(all_letters)
 
-# puts "#{draw_letters(all_letters)}"
-drawn_letters = draw_letters(all_letters)
-# print "drawn letters :"
-# puts "#{drawn_letters}"
-
-# puts drawn_letters.size
-
-
-#create method to confirm the word uses available letters
-
-# def uses_available_letters?(input, letters_in_hand)
-#    input_letters = input.split('')
-#    input_letters.all? {|letter|
-#      letters_in_hand.include?letter
-#    }
-#
-#    # letters_in_hand.include?input_letters # => false
-# end
-#
-#
-# word = "jam"
-# letters_in_hand = ["A", "A", "A", "A", "A", "M", "B", "J", "C", "O"]
-# #
-# #
-# puts uses_available_letters?(word, drawn_letters)
-
-# word = "JAM"
-# word_letters = word.split('')
-# puts "#{word_letters}"
-#
-# letters_in_hand = ["A", "A", "A", "A", "A", "M", "B", "J", "C", "O"]
-
-def uses_available_letters? (input, letters_in_hand)
-valid_letter = []
-word_letters = input.split('')
-puts "#{letters_in_hand}"
-
-  word_letters.each do |letter|
-    x = letters_in_hand.include?letter.upcase
-    valid_letter << x
-
-    # rearrange or cut arrange to reflect used letters?
-    #
-    #
-  end
-
-#puts valid_letter.all?
-  return valid_letter.all?
+def make_word_array(input)
+  input = input.upcase.split("")
+  return input
 end
 
-#puts letters_in_hand.include?word_letters
 
-#puts word_letters & letters_in_hand
-# puts ["J", "A", "M"].include?["M", "J", "A"]
-some_letters = %w(A P G D J Q I M L A)
-puts uses_available_letters?("jam", some_letters)
+def uses_available_letters? (input, drawn_letters)
+  is_valid = "default"
+  word_letters = make_word_array(input)
+
+  word_letters.each do |letter|
+    if drawn_letters.include?letter
+      is_valid = true
+      puts "letter valid " + "#{is_valid}"
+      letter_index = drawn_letters.index(letter)
+      drawn_letters.delete_at(letter_index)
+    else
+      is_valid = false
+      puts "letter not valid" + "#{is_valid}"
+      return is_valid
+
+    end
+  end
+
+  return is_valid
+end
+
+
+puts "drawn letters: #{DRAWN_LETTERS}"
+
+# LINES WORK  - test case with input
+# puts uses_available_letters?("LAME", DRAWN_LETTERS)
+
+# LINES WORK - test case with user input
+input = gets.chomp
+puts uses_available_letters?(input, DRAWN_LETTERS)
