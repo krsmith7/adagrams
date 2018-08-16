@@ -56,6 +56,54 @@ puts "drawn letters: #{DRAWN_LETTERS}"
 # LINES WORK  - test case with input
 # puts uses_available_letters?("LAME", DRAWN_LETTERS)
 
-# LINES WORK - test case with user input
-input = gets.chomp
-puts uses_available_letters?(input, DRAWN_LETTERS)
+# # LINES WORK - test case with user input
+# input = gets.chomp
+# puts uses_available_letters?(input, DRAWN_LETTERS)
+
+
+#turn all_letters array into a hash that represents the score of each letter
+LETTER_SCORES = {}
+
+# Make hash for letter to score - works
+all_letters.uniq.each do |letter|
+
+  case letter
+  when "A","E", "I", "O", "U", "L", "N", "R", "S", "T"
+    score = 1
+  when "D", "G"
+    score = 2
+  when "B", "C", "M", "P"
+    score = 3
+  when "F", "H", "V", "W", "Y"
+    score = 4
+  when "K"
+    score = 5
+  when "J", "X"
+    score = 8
+  when "Q", "Z"
+    score = 10
+  else
+    score = 0
+  end
+
+  LETTER_SCORES[letter] = score
+end
+
+puts "#{LETTER_SCORES}"
+
+#create method for scoring word
+
+def score_word(word)
+  word_letters = make_word_array(word)
+  score = 0
+  word_letters.each do |letter|
+    score += LETTER_SCORES[letter]
+  end
+
+  score += 8 if word.length >= 7 && word.length <= 10
+  return score
+end
+
+
+
+# puts score_word("pillowsjamson")
