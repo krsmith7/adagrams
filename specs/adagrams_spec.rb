@@ -40,7 +40,7 @@ describe 'Adagrams' do
       expect(is_valid).must_equal true
     end
 #
-    it 'returns false word contains letters not in the drawn letters' do
+    it 'returns false if word contains letters not in the drawn letters' do
       drawn_letters = ['D', 'O', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X']
       test_word = 'DOG'
 
@@ -49,39 +49,39 @@ describe 'Adagrams' do
       expect(is_valid).must_equal false
     end
 #
-#     it 'returns false word contains repeated letters more than in the drawn letters' do
-#       drawn_letters = ['A', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X']
-#       test_word = 'AAA'
+    it 'returns false if word contains repeated letters more than in the drawn letters' do
+      drawn_letters = ['A', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X']
+      test_word = 'AAA'
+
+      is_valid = uses_available_letters? test_word, drawn_letters
+
+      expect(is_valid).must_equal false
+    end
+
+  end
 #
-#       is_valid = uses_available_letters? test_word, drawn_letters
+  describe 'score_word method' do
+    it 'returns an accurate numerical score according to the score chart' do
+      expect(score_word("A")).must_equal 1
+      expect(score_word("DOG")).must_equal 5
+      expect(score_word("WHIMSY")).must_equal 17
+    end
 #
-#       expect(is_valid).must_equal false
-#     end
+    it 'returns a score regardless of input case' do
+      expect(score_word("a")).must_equal 1
+      expect(score_word("dog")).must_equal 5
+      expect(score_word("wHiMsY")).must_equal 17
+    end
 #
-#   end
+    it 'returns a score of 0 if given an empty input' do
+      expect(score_word("")).must_equal 0
+    end
 #
-#   describe 'score_word method' do
-#     it 'returns an accurate numerical score according to the score chart' do
-#       expect(score_word("A")).must_equal 1
-#       expect(score_word("DOG")).must_equal 5
-#       expect(score_word("WHIMSY")).must_equal 17
-#     end
-#
-#     it 'returns a score regardless of input case' do
-#       expect(score_word("a")).must_equal 1
-#       expect(score_word("dog")).must_equal 5
-#       expect(score_word("wHiMsY")).must_equal 17
-#     end
-#
-#     it 'returns a score of 0 if given an empty input' do
-#       expect(score_word("")).must_equal 0
-#     end
-#
-#     it 'adds an extra 8 points if the word is 7 or more characters long' do
-#       expect(score_word("XXXXXXX")).must_equal 64
-#       expect(score_word("XXXXXXXX")).must_equal 72
-#       expect(score_word("XXXXXXXXX")).must_equal 80
-#     end
+    it 'adds an extra 8 points if the word is 7 or more characters long' do
+      expect(score_word("XXXXXXX")).must_equal 64
+      expect(score_word("XXXXXXXX")).must_equal 72
+      expect(score_word("XXXXXXXXX")).must_equal 80
+    end
 #   end
 #
 #   describe 'highest_score_from method' do
@@ -171,6 +171,6 @@ describe 'Adagrams' do
 #       expect(best_word[:score]).must_equal 18
 #     end
 #   end
-# end
 end
+
 end
