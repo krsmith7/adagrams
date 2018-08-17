@@ -23,6 +23,7 @@ end
 
 DRAWN_LETTERS = draw_letters(all_letters)
 
+# Transform input word string into array, all in capital letters
 def make_word_array(input)
   input = input.upcase.split("")
   return input
@@ -41,7 +42,7 @@ def uses_available_letters? (input, drawn_letters)
       drawn_letters.delete_at(letter_index)
     else
       is_valid = false
-      puts "letter not valid" + "#{is_valid}"
+      puts "letter not valid " + "#{is_valid}"
       return is_valid
 
     end
@@ -89,7 +90,7 @@ all_letters.uniq.each do |letter|
   LETTER_SCORES[letter] = score
 end
 
-puts "#{LETTER_SCORES}"
+puts "Letter point values: #{LETTER_SCORES}"
 
 #create method for scoring word
 def score_word(word)
@@ -119,14 +120,28 @@ def highest_score_from_words(words)
     all_words_scores << each_word_score
   end
 
-return all_words_scores
+###
   # Find highest scoring word
-  all_words_scores.sort_by do |word, score|
-    [:score]
-  end
+  # all_words_scores.sort_by do |word, score|
+  #   [:score]
+  # end
 
-  puts all_words_scores
+  # all_words_scores.each do |pair|
+  #    puts pair[:score]
+  # end
+
+  best_word = all_words_scores.each.sort_by {|hash| hash[:score]}.reverse.first
+
+# Need conditionals for ties
+#
+#
+#
+# binding.pry
+ return best_word
+
+###
 end
 
-test_array = ["PUNK", "JAM", "DOG", "PILLLOW", "KAYAK"]
+# Test word array
+test_array = ["PUNKTASTIC", "JAM", "DOG", "PILLOW", "KAYAK"]
 puts "#{highest_score_from_words(test_array)}"
