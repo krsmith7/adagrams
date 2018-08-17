@@ -92,7 +92,6 @@ end
 puts "#{LETTER_SCORES}"
 
 #create method for scoring word
-
 def score_word(word)
   word_letters = make_word_array(word)
   score = 0
@@ -105,5 +104,29 @@ def score_word(word)
 end
 
 
-
 # puts score_word("pillowsjamson")
+
+
+#create a method to return a hash with the highest scoring words
+def highest_score_from_words(words)
+  all_words_scores = []
+
+  # Calculate scores of all words
+  words.each do |word|
+    each_word_score = {}
+    each_word_score[:word] = word
+    each_word_score[:score] = score_word(word)
+    all_words_scores << each_word_score
+  end
+
+return all_words_scores
+  # Find highest scoring word
+  all_words_scores.sort_by do |word, score|
+    [:score]
+  end
+
+  puts all_words_scores
+end
+
+test_array = ["PUNK", "JAM", "DOG", "PILLLOW", "KAYAK"]
+puts "#{highest_score_from_words(test_array)}"
